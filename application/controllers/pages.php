@@ -34,7 +34,7 @@ class Pages extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('login_page');
+		$this->load->view('new');
 	}
 	public function page()
 	{
@@ -58,12 +58,15 @@ class Pages extends CI_Controller {
 		}
 
 		if($cek>0){
-			$quer= $this->db->query('SELECT * FROM staffkearsipan,kabag,kadin,staff') ; 
+			$quer= $this->db->query('SELECT nama FROM ' .$tabel[$x-1]) ; 
+			foreach ($quer->result() as $hasil ) {
+				$name = $hasil->nama;
+			}
 			$data_session = array(
 				'nip' => $nip,
-				'nama' =>  $quer,
+				'nama' =>  $name,
 				'status' => "login",
-				'role' => $tabel[$x]
+				'role' => $tabel[$x-1]
 			);
 			if($x==1){
 				$this->session->set_userdata($data_session);
@@ -104,7 +107,7 @@ class Pages extends CI_Controller {
 		}
 		else{
 			echo "alert('Username dan password salah !')";
-			redirect('pages/index');
+			redirect(base_url());
 		}
 	}
 
@@ -123,5 +126,10 @@ class Pages extends CI_Controller {
         // $this->page['sidebar'] = $this->load->view('page/sidebar_kadin',$this->data, TRUE);
         // $this->page['sidebar'] = $this->load->view('page/sidebar_staff',$this->data, TRUE);
         $this->load->view('page/main',$this->pages);
-    }
+	}
+	
+	public function content(Type $var = null)
+	{
+		# code...
+	}
 }
