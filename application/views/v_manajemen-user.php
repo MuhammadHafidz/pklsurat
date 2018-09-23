@@ -34,7 +34,7 @@
 
                 <div class="row">
                     <div id="reload">
-                    <table class="table table-striped table-hover table-responsive" id="mydata">
+                    <table class="table table-borderless table-responsive-md table-hover" id="mydata">
                         <thead>
                             <tr>
                                 <th scope="col">NIP User</th>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                            <button class="btn_hapus btn btn-danger" id="btn_hapus">Hapus</button>
+                            <button class="btn_hapus btn btn-danger" id="btn_delete">Hapus</button>
                         </div>
                     </form>
                 </div>
@@ -216,8 +216,8 @@
 		                        '<td>'+data[i].nama+'</td>'+
 		                        '<td>'+data[i].level+'</td>'+
 		                        '<td style="text-align:right;">'+
-                                    '<a href="#" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalaEdit"><span class="fa fa-edit"></span> Edit</a>'+' '+' '+
-                                    '<a href="#" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#ModalaHapus"><span class="fa fa-delete"></span> Hapus</a>'+
+                                    '<a href="#" class="btn btn-sm btn-info item_edit" data-toggle="modal" data-target="#ModalaEdit" data="'+data[i].nip+'"><span class="fa fa-edit"></span> Edit</a>'+' '+' '+
+                                    '<a href="#" class="btn btn-sm btn-danger item_hapus" data-toggle="modal" data-target="#ModalaHapus" data="'+data[i].nip+'"><span class="fa fa-delete"></span> Hapus</a>'+
                                 '</td>'+
 		                        '</tr>';
 		            }
@@ -303,16 +303,16 @@
         });
 
         //Hapus Barang
-        $('#btn_hapus').on('click',function(){
+        $('#btn_delete').on('click',function(){
             var nip=$('#textkode').val();
             $.ajax({
             type : "POST",
             url  : "<?php echo base_url().'index.php/user/del_user'?>",
             dataType : "JSON",
-                    data : {nip: nip},
-                    success: function(data){
-                            $('#ModalHapus').modal('hide');
-                            tampil_data_user();
+            data : {nip: nip},
+            success: function(data){
+                    $('#ModalHapus').modal('hide');
+                    tampil_data_user();
                     }
                 });
             return false;
