@@ -124,28 +124,28 @@
                             <div class="form-group">
                                 <label class="control-label col-xs-3" >NIP User</label>
                                 <div class="col-xs-9">
-                                    <input name="nip2" id="nip2" class="form-control" type="number" placeholder="NIP User" required>
+                                    <input name="edit_nip" id="nip2" class="form-control" type="number" placeholder="NIP User" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" >Nama User</label>
                                 <div class="col-xs-9">
-                                    <input name="nama2" id="nama2" class="form-control" type="text" placeholder="Nama User" required>
+                                    <input name="edit_nama" id="nama2" class="form-control" type="text" placeholder="Nama User" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" >Password User</label>
                                 <div class="col-xs-9">
-                                    <input name="pass2" id="pass2" class="form-control" type="password" placeholder="********" required>
+                                    <input name="edit_pass" id="pass2" class="form-control" type="password" placeholder="********" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label col-xs-3" >Level User</label>
                                 <div class="col-xs-9">
-                                    <select name="level2" id="level2">
+                                    <select name="edit_level" id="level2">
                                         <option value="admin">Admin</option>
                                         <option value="kabag">Kabag</option>
                                         <option value="kadin">Kadin</option>
@@ -216,17 +216,15 @@
 		                        '<td>'+data[i].nama+'</td>'+
 		                        '<td>'+data[i].level+'</td>'+
 		                        '<td style="text-align:right;">'+
-                                    '<a href="#" class="btn btn-sm btn-info item_edit" data-toggle="modal" data-target="#ModalaEdit" data="'+data[i].nip+'"><span class="fa fa-edit"></span> Edit</a>'+' '+' '+
-                                    '<a href="#" class="btn btn-sm btn-danger item_hapus" data-toggle="modal" data-target="#ModalaHapus" data="'+data[i].nip+'"><span class="fa fa-delete"></span> Hapus</a>'+
+                                    '<a href="javascript:;" class="btn btn-sm btn-info item_edit"  data="'+data[i].nip+' "><span class="fa fa-edit"></span> Edit</a>'+' '+' '+
+                                    '<a href="javascript:;" class="btn btn-sm btn-danger item_hapus"  data="'+data[i].nip+'"><span class="fa fa-delete"></span> Hapus</a>'+
                                 '</td>'+
 		                        '</tr>';
 		            }
 		            $('#show_data').html(html);
 		        }
-
 		    });
 		}
-
 		//GET UPDATE
 		$('#show_data').on('click','.item_edit',function(){
             var id=$(this).attr('data');
@@ -234,28 +232,25 @@
                 type : "GET",
                 url  : "<?php echo base_url().'index.php/user/get_user'?>",
                 dataType : "JSON",
-                data : {nip:nip},
+                data : {id:id},
                 success: function(data){
                 	$.each(data,function(nip, nama, pass, level){
                     	$('#ModalaEdit').modal('show');
-            			$('[name="nip"]').val(data.nip);
-            			$('[name="nama"]').val(data.nama);
-            			$('[name="pass"]').val(data.pass);
-            			$('[name="level"]').val(data.level);
+            			$('[name="edit_nip"]').val(data.nip);
+            			$('[name="edit_nama"]').val(data.nama);
+            			$('[name="edit_pass"]').val(data.pass);
+            			$('[name="edit_level"]').val(data.level);
             		});
                 }
             });
             return false;
         });
-
-
 		//GET HAPUS
 		$('#show_data').on('click','.item_hapus',function(){
             var id=$(this).attr('data');
             $('#ModalHapus').modal('show');
             $('[name="nip"]').val(id);
         });
-
 		//Simpan User
 		$('#btn_simpan').on('click',function(){
             var nip=$('#nip').val();
@@ -278,8 +273,7 @@
             });
             return false;
         });
-
-        //Update Barang
+        //Update USer
 		$('#btn_update').on('click',function(){
             var nip=$('#nip2').val();
             var nama=$('#nama2').val();
@@ -291,17 +285,16 @@
                 dataType : "JSON",
                 data : {nip:nip , nama:nama, pass:pass, level:level},
                 success: function(data){
-                    $('[name="nip"]').val("");
-                    $('[name="nama"]').val("");
-                    $('[name="pass"]').val("");
-                    $('[name="level"]').val("");
+                    $('[name="edit_nip"]').val("");
+                    $('[name="edit_nama"]').val("");
+                    $('[name="edit_pass"]').val("");
+                    $('[name="edit_level"]').val("");
                     $('#ModalaEdit').modal('hide');
                     tampil_data_user();
                 }
             });
             return false;
         });
-
         //Hapus Barang
         $('#btn_delete').on('click',function(){
             var nip=$('#textkode').val();
@@ -317,9 +310,7 @@
                 });
             return false;
         });
-
 	});
-
 </script>
 </body>
-</html>
+</html> 

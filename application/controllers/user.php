@@ -25,7 +25,7 @@
         
         public function get_user()
         {
-            $nip=$this->input->post('nip');
+            $nip=$this->input->get('id');
             $data=$this->m_user->get_data($nip);
             echo json_encode($data);
         }

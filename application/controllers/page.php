@@ -33,6 +33,24 @@
                 echo "Anda tidak berhak mengakses halaman ini.";
             }
         }
+
+        public function arsip()
+        {
+            if($this->session->userdata('akses')=='admin'){
+                $this->load->view('v_arsip');
+            }else{
+                echo "Anda tidak berhak mengakses halaman ini.";
+            }
+        }
+
+        public function surat_masuk()
+        {
+           if($this->session->userdata('akses')=='admin'|| $this->session->userdata('akses')=='kadin'){
+               $this->load->view('v_masuk');
+           }else{
+               echo "Anda tidak berhak mengakses halaman ini.";
+           }
+        }
     
     }
     

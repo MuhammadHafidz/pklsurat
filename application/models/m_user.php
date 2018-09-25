@@ -18,7 +18,7 @@
                     $hasil=array(
                         'nip' => $data->nip,
 					    'nama' => $data->nama,
-					    'password' => $data->pass,
+					    'password' => $data->password,
 					    'level' => $data->level,
 					);
 			    }
@@ -34,7 +34,7 @@
 
         public function update_user($nip,$nama,$pass,$level)
         {
-            $hasil=$this->db->query("UPDATE user SET nip='$nip',nama='$nama',pass='$pass',level='$level' WHERE nip='$nip'");
+            $hasil=$this->db->query("UPDATE user SET nip='$nip',nama='$nama',password='$pass',level='$level' WHERE nip='$nip'");
 		    return $hasil;
         }
 
