@@ -177,7 +177,7 @@
                     <form class="form-horizontal">
                         <div class="modal-body">
                                             
-                                <input type="hidden" name="nip" id="textkode" value="">
+                                <input type="hidden" name="nip_hapus" id="textkode" value="">
                                 <div class="alert alert-warning"><p>Apakah Anda yakin mau memhapus barang ini?</p></div>
                                             
                         </div>
@@ -248,8 +248,8 @@
 		//GET HAPUS
 		$('#show_data').on('click','.item_hapus',function(){
             var id=$(this).attr('data');
-            $('#ModalHapus').modal('show');
-            $('[name="nip"]').val(id);
+            $('#ModalaHapus').modal('show');
+            $('[name="nip_hapus"]').val(id);
         });
 		//Simpan User
 		$('#btn_simpan').on('click',function(){
@@ -304,7 +304,7 @@
             dataType : "JSON",
             data : {nip: nip},
             success: function(data){
-                    $('#ModalHapus').modal('hide');
+                    $('#ModalaHapus').modal('hide');
                     tampil_data_user();
                     }
                 });
