@@ -12,10 +12,12 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'dist/css/jquery.dataTables.css'?>">
 </head>
 <body>
+<div >
+
     <!-- Header -->
     <?php $this->load->view('v_header');?>
     <!-- Header -->
-
+    
     <!-- Content -->
     <div class="row">
             <div class="col-md-3">
@@ -32,9 +34,9 @@
                     </h1>
                 </div>
 
-                <div class="row">
+                <div class="row" >
                     <div id="reload">
-                    <table class="table table-borderless table-responsive-md table-hover" id="mydata">
+                    <table class="table table-borderless table-responsive-md table-hover" id="mydata" >
                         <thead>
                             <tr>
                                 <th scope="col">NIP User</th>
@@ -190,7 +192,7 @@
             </div>
         </div>
         <!--END MODAL HAPUS-->
-
+</div>
 <script type="text/javascript" src="<?php echo base_url().'dist/js/jquery.js'?>"></script>
 <script type="text/javascript" src="<?php echo base_url().'dist/js/bootstrap.js'?>"></script>
 <script type="text/javascript" src="<?php echo base_url().'dist/js/jquery.dataTables.js'?>"></script>
